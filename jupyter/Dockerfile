@@ -10,9 +10,9 @@ RUN apt install sudo -y && apt install python3.9 python3-pip -y && useradd -m ad
 
 RUN apt update -y && apt install nodejs -y && npm install -g configurable-http-proxy && pip3 install jupyterlab==2.1.2 
 
-COPY slurm.conf /etc/slurm-llnl/
-COPY cgroup.conf /etc/slurm-llnl/
-COPY docker-entrypoint.sh /etc/slurm-llnl/
+COPY slurm.conf /etc/slurm/
+COPY cgroup.conf /etc/slurm/
+COPY docker-entrypoint.sh /etc/slurm/
 
 WORKDIR /home/admin
 
@@ -23,4 +23,4 @@ ENV SHELL bash
 
 RUN apt install libopenmpi-dev -y && pip3 install mpi4py && pip3 install jupyterlab_slurm
 
-ENTRYPOINT ["/etc/slurm-llnl/docker-entrypoint.sh"]
+ENTRYPOINT ["/etc/slurm/docker-entrypoint.sh"]
